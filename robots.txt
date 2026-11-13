@@ -76,6 +76,5 @@ Allow: /
 Allow: /locations/
 Allow: /llms.txt
 
-# Host & Sitemap Directives
-Host: https://www.cityhaldwani.in
+# Sitemap Directives
 Sitemap: https://www.cityhaldwani.in/sitemap.xml
