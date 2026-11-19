@@ -1,165 +1,258 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
   
   <!-- Homepage -->
   <url>
-    <loc>https://www.cityhaldwani.in/</loc>
+    <loc>https://cityhaldwani.in/</loc>
     <lastmod>2026-11-05</lastmod>
     <changefreq>daily</changefreq>
     <priority>1.0</priority>
+      <image:image>
+      <image:loc>https://cityhaldwani.in/city-logo.png</image:loc>
+      <image:title>CityHaldwani Verified Call Girls &amp; VIP Escort Service</image:title>
+    </image:image>
   </url>
 
   <!-- Primary Location Directory (Domain Focus) -->
   <url>
-    <loc>https://www.cityhaldwani.in/locations/haldwani.html</loc>
+    <loc>https://cityhaldwani.in/locations/haldwani</loc>
     <lastmod>2026-11-05</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.95</priority>
+      <image:image>
+      <image:loc>https://cityhaldwani.in/city-logo.png</image:loc>
+      <image:title>Haldwani Call Girls &amp; Verified Escort Service</image:title>
+    </image:image>
   </url>
 
   <!-- Premium Regional & Metropolitian Location Pages -->
   <url>
-    <loc>https://www.cityhaldwani.in/locations/bangalore.html</loc>
+    <loc>https://cityhaldwani.in/locations/bangalore</loc>
     <lastmod>2026-11-05</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
+      <image:image>
+      <image:loc>https://cityhaldwani.in/city-logo.png</image:loc>
+      <image:title>Bangalore Call Girls &amp; Verified Escort Service</image:title>
+    </image:image>
   </url>
   <url>
-    <loc>https://www.cityhaldwani.in/locations/bhimtal.html</loc>
+    <loc>https://cityhaldwani.in/locations/bhimtal</loc>
     <lastmod>2026-11-05</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
+      <image:image>
+      <image:loc>https://cityhaldwani.in/city-logo.png</image:loc>
+      <image:title>Bhimtal Call Girls &amp; Verified Escort Service</image:title>
+    </image:image>
   </url>
   <url>
-    <loc>https://www.cityhaldwani.in/locations/chandigarh.html</loc>
+    <loc>https://cityhaldwani.in/locations/chandigarh</loc>
     <lastmod>2026-11-05</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
+      <image:image>
+      <image:loc>https://cityhaldwani.in/city-logo.png</image:loc>
+      <image:title>Chandigarh Call Girls &amp; Verified Escort Service</image:title>
+    </image:image>
   </url>
   <url>
-    <loc>https://www.cityhaldwani.in/locations/chennai.html</loc>
+    <loc>https://cityhaldwani.in/locations/chennai</loc>
     <lastmod>2026-11-05</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
+      <image:image>
+      <image:loc>https://cityhaldwani.in/city-logo.png</image:loc>
+      <image:title>Chennai Call Girls &amp; Verified Escort Service</image:title>
+    </image:image>
   </url>
   <url>
-    <loc>https://www.cityhaldwani.in/locations/dehradun.html</loc>
+    <loc>https://cityhaldwani.in/locations/dehradun</loc>
     <lastmod>2026-11-05</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
+      <image:image>
+      <image:loc>https://cityhaldwani.in/city-logo.png</image:loc>
+      <image:title>Dehradun Call Girls &amp; Verified Escort Service</image:title>
+    </image:image>
   </url>
   <url>
-    <loc>https://www.cityhaldwani.in/locations/himachal.html</loc>
+    <loc>https://cityhaldwani.in/locations/himachal</loc>
     <lastmod>2026-11-05</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
+      <image:image>
+      <image:loc>https://cityhaldwani.in/city-logo.png</image:loc>
+      <image:title>Himachal Call Girls &amp; Verified Escort Service</image:title>
+    </image:image>
   </url>
   <url>
-    <loc>https://www.cityhaldwani.in/locations/hyderabad.html</loc>
+    <loc>https://cityhaldwani.in/locations/hyderabad</loc>
     <lastmod>2026-11-05</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
+      <image:image>
+      <image:loc>https://cityhaldwani.in/city-logo.png</image:loc>
+      <image:title>Hyderabad Call Girls &amp; Verified Escort Service</image:title>
+    </image:image>
   </url>
   <url>
-    <loc>https://www.cityhaldwani.in/locations/indore.html</loc>
+    <loc>https://cityhaldwani.in/locations/indore</loc>
     <lastmod>2026-11-05</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
+      <image:image>
+      <image:loc>https://cityhaldwani.in/city-logo.png</image:loc>
+      <image:title>Indore Call Girls &amp; Verified Escort Service</image:title>
+    </image:image>
   </url>
   <url>
-    <loc>https://www.cityhaldwani.in/locations/jaipur.html</loc>
+    <loc>https://cityhaldwani.in/locations/jaipur</loc>
     <lastmod>2026-11-05</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
+      <image:image>
+      <image:loc>https://cityhaldwani.in/city-logo.png</image:loc>
+      <image:title>Jaipur Call Girls &amp; Verified Escort Service</image:title>
+    </image:image>
   </url>
   <url>
-    <loc>https://www.cityhaldwani.in/locations/ludhiana.html</loc>
+    <loc>https://cityhaldwani.in/locations/ludhiana</loc>
     <lastmod>2026-11-05</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
+      <image:image>
+      <image:loc>https://cityhaldwani.in/city-logo.png</image:loc>
+      <image:title>Ludhiana Call Girls &amp; Verified Escort Service</image:title>
+    </image:image>
   </url>
   <url>
-    <loc>https://www.cityhaldwani.in/locations/manali.html</loc>
+    <loc>https://cityhaldwani.in/locations/manali</loc>
     <lastmod>2026-11-05</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
+      <image:image>
+      <image:loc>https://cityhaldwani.in/city-logo.png</image:loc>
+      <image:title>Manali Call Girls &amp; Verified Escort Service</image:title>
+    </image:image>
   </url>
   <url>
-    <loc>https://www.cityhaldwani.in/locations/mohali.html</loc>
+    <loc>https://cityhaldwani.in/locations/mohali</loc>
     <lastmod>2026-11-05</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
+      <image:image>
+      <image:loc>https://cityhaldwani.in/city-logo.png</image:loc>
+      <image:title>Mohali Call Girls &amp; Verified Escort Service</image:title>
+    </image:image>
   </url>
   <url>
-    <loc>https://www.cityhaldwani.in/locations/mussoorie.html</loc>
+    <loc>https://cityhaldwani.in/locations/mussoorie</loc>
     <lastmod>2026-11-05</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
+      <image:image>
+      <image:loc>https://cityhaldwani.in/city-logo.png</image:loc>
+      <image:title>Mussoorie Call Girls &amp; Verified Escort Service</image:title>
+    </image:image>
   </url>
   <url>
-    <loc>https://www.cityhaldwani.in/locations/nainital.html</loc>
+    <loc>https://cityhaldwani.in/locations/nainital</loc>
     <lastmod>2026-11-05</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
+      <image:image>
+      <image:loc>https://cityhaldwani.in/city-logo.png</image:loc>
+      <image:title>Nainital Call Girls &amp; Verified Escort Service</image:title>
+    </image:image>
   </url>
   <url>
-    <loc>https://www.cityhaldwani.in/locations/patiala.html</loc>
+    <loc>https://cityhaldwani.in/locations/patiala</loc>
     <lastmod>2026-11-05</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
+      <image:image>
+      <image:loc>https://cityhaldwani.in/city-logo.png</image:loc>
+      <image:title>Patiala Call Girls &amp; Verified Escort Service</image:title>
+    </image:image>
   </url>
   <url>
-    <loc>https://www.cityhaldwani.in/locations/pune.html</loc>
+    <loc>https://cityhaldwani.in/locations/pune</loc>
     <lastmod>2026-11-05</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
+      <image:image>
+      <image:loc>https://cityhaldwani.in/city-logo.png</image:loc>
+      <image:title>Pune Call Girls &amp; Verified Escort Service</image:title>
+    </image:image>
   </url>
   <url>
-    <loc>https://www.cityhaldwani.in/locations/ramnagar.html</loc>
+    <loc>https://cityhaldwani.in/locations/ramnagar</loc>
     <lastmod>2026-11-05</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
+      <image:image>
+      <image:loc>https://cityhaldwani.in/city-logo.png</image:loc>
+      <image:title>Ramnagar Call Girls &amp; Verified Escort Service</image:title>
+    </image:image>
   </url>
   <url>
-    <loc>https://www.cityhaldwani.in/locations/rishikesh.html</loc>
+    <loc>https://cityhaldwani.in/locations/rishikesh</loc>
     <lastmod>2026-11-05</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
+      <image:image>
+      <image:loc>https://cityhaldwani.in/city-logo.png</image:loc>
+      <image:title>Rishikesh Call Girls &amp; Verified Escort Service</image:title>
+    </image:image>
   </url>
   <url>
-    <loc>https://www.cityhaldwani.in/locations/rudrapur.html</loc>
+    <loc>https://cityhaldwani.in/locations/rudrapur</loc>
     <lastmod>2026-11-05</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
+      <image:image>
+      <image:loc>https://cityhaldwani.in/city-logo.png</image:loc>
+      <image:title>Rudrapur Call Girls &amp; Verified Escort Service</image:title>
+    </image:image>
   </url>
   <url>
-    <loc>https://www.cityhaldwani.in/locations/shimla.html</loc>
+    <loc>https://cityhaldwani.in/locations/shimla</loc>
     <lastmod>2026-11-05</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
+      <image:image>
+      <image:loc>https://cityhaldwani.in/city-logo.png</image:loc>
+      <image:title>Shimla Call Girls &amp; Verified Escort Service</image:title>
+    </image:image>
   </url>
   <url>
-    <loc>https://www.cityhaldwani.in/locations/zirakpur.html</loc>
+    <loc>https://cityhaldwani.in/locations/zirakpur</loc>
     <lastmod>2026-11-05</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
+      <image:image>
+      <image:loc>https://cityhaldwani.in/city-logo.png</image:loc>
+      <image:title>Zirakpur Call Girls &amp; Verified Escort Service</image:title>
+    </image:image>
   </url>
 
   <!-- Trust, Support & Safety Pages -->
   <url>
-    <loc>https://www.cityhaldwani.in/contact.html</loc>
+    <loc>https://cityhaldwani.in/support-helpdesk</loc>
     <lastmod>2026-11-05</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://www.cityhaldwani.in/safety-guidelines.html</loc>
+    <loc>https://cityhaldwani.in/escort-safety-rules</loc>
     <lastmod>2026-11-05</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://www.cityhaldwani.in/report-abuse.html</loc>
+    <loc>https://cityhaldwani.in/report-violations</loc>
     <lastmod>2026-11-05</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
@@ -167,24 +260,16 @@
 
   <!-- Legal & Compliance Pages -->
   <url>
-    <loc>https://www.cityhaldwani.in/terms.html</loc>
+    <loc>https://cityhaldwani.in/user-agreement</loc>
     <lastmod>2026-11-05</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
-    <loc>https://www.cityhaldwani.in/privacy.html</loc>
+    <loc>https://cityhaldwani.in/data-privacy</loc>
     <lastmod>2026-11-05</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
-  </url>
-
-  <!-- Error & Redirection Page -->
-  <url>
-    <loc>https://www.cityhaldwani.in/404.html</loc>
-    <lastmod>2026-11-05</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.3</priority>
   </url>
 
 </urlset>

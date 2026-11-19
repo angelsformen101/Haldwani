@@ -1,0 +1,12 @@
+{
+  "name": "city-haldwani",
+  "version": "1.0.0",
+  "description": "City Haldwani website with dedicated admin panel and real-time contact management",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}

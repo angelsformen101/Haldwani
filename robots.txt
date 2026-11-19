@@ -1,5 +1,5 @@
 # ==============================================================================
-# Robots.txt for CityHaldwani (https://www.cityhaldwani.in)
+# Robots.txt for CityHaldwani (https://cityhaldwani.in)
 # Highly Optimized for Search Engine Crawlers, Image Indexing & AI Search Bots
 # ==============================================================================
 
@@ -8,6 +8,10 @@ User-agent: *
 Allow: /
 Allow: /locations/
 Allow: /public/
+Allow: /llms.txt
+Disallow: /admin!
+Disallow: /admin/
+Disallow: /api/
 Disallow: /*.py$
 Disallow: /scratch/
 Disallow: /*?*sort=
@@ -17,6 +21,10 @@ User-agent: Googlebot
 Allow: /
 Allow: /locations/
 Allow: /public/
+Allow: /llms.txt
+Disallow: /admin!
+Disallow: /admin/
+Disallow: /api/
 
 User-agent: Googlebot-Image
 Allow: /public/*.webp
@@ -32,49 +40,83 @@ User-agent: Bingbot
 Allow: /
 Allow: /locations/
 Allow: /public/
+Allow: /llms.txt
+Disallow: /admin!
+Disallow: /admin/
+Disallow: /api/
 
 User-agent: Applebot
 Allow: /
 Allow: /locations/
+Allow: /llms.txt
+Disallow: /admin!
+Disallow: /admin/
+Disallow: /api/
 
 User-agent: DuckDuckBot
 Allow: /
 Allow: /locations/
+Allow: /llms.txt
+Disallow: /admin!
+Disallow: /admin/
+Disallow: /api/
 
 User-agent: YandexBot
 Allow: /
 Allow: /locations/
+Allow: /llms.txt
+Disallow: /admin!
+Disallow: /admin/
+Disallow: /api/
 
 # AI, LLM & Answer Engine Crawlers (ChatGPT, Claude, Perplexity, Gemini)
 User-agent: GPTBot
 Allow: /
 Allow: /locations/
 Allow: /llms.txt
+Disallow: /admin!
+Disallow: /admin/
+Disallow: /api/
 
 User-agent: ChatGPT-User
 Allow: /
 Allow: /locations/
 Allow: /llms.txt
+Disallow: /admin!
+Disallow: /admin/
+Disallow: /api/
 
 User-agent: ClaudeBot
 Allow: /
 Allow: /locations/
 Allow: /llms.txt
+Disallow: /admin!
+Disallow: /admin/
+Disallow: /api/
 
 User-agent: Claude-Web
 Allow: /
 Allow: /locations/
 Allow: /llms.txt
+Disallow: /admin!
+Disallow: /admin/
+Disallow: /api/
 
 User-agent: PerplexityBot
 Allow: /
 Allow: /locations/
 Allow: /llms.txt
+Disallow: /admin!
+Disallow: /admin/
+Disallow: /api/
 
 User-agent: Google-Extended
 Allow: /
 Allow: /locations/
 Allow: /llms.txt
+Disallow: /admin!
+Disallow: /admin/
+Disallow: /api/
 
 # Sitemap Directives
-Sitemap: https://www.cityhaldwani.in/sitemap.xml
+Sitemap: https://cityhaldwani.in/sitemap.xml

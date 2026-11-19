@@ -1,0 +1,1198 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CityHaldwani | Management Desk</title>
+    <link rel="icon" type="image/png" href="../city-logo.png">
+    <script>
+        (function() {
+            // Strictly enforce secret route /admin! and hide actual file name
+            if (window.location.protocol.startsWith('http')) {
+                var path = decodeURIComponent(window.location.pathname);
+                if (!path.endsWith('/admin!') && !path.endsWith('/admin!/')) {
+                    window.location.replace('/');
+                    return;
+                }
+                if (window.history && window.history.replaceState) {
+                    window.history.replaceState(null, '', '/admin!');
+                }
+            }
+        })();
+    </script>
+    <script src="/js/contacts-config.js"></script>
+    <script src="contacts-config.js"></script>
+    <style>
+        :root {
+            --bg-dark: #0b1120;
+            --surface-card: #1e293b;
+            --surface-hover: #243247;
+            --border-slate: #334155;
+            --primary-red: #ef4444;
+            --primary-red-hover: #dc2626;
+            --accent-sky: #38bdf8;
+            --text-light: #f8fafc;
+            --text-muted: #cbd5e1;
+            --text-dim: #94a3b8;
+            --success-green: #10b981;
+            --whatsapp-green: #25D366;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            background-color: var(--bg-dark);
+            color: var(--text-light);
+            line-height: 1.6;
+            min-height: 100vh;
+        }
+
+        /* Login Screen */
+        #login-overlay {
+            position: fixed;
+            inset: 0;
+            background: rgba(11, 17, 32, 0.96);
+            backdrop-filter: blur(12px);
+            z-index: 10000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        .login-card {
+            background: var(--surface-card);
+            border: 1px solid var(--border-slate);
+            border-radius: 12px;
+            width: 100%;
+            max-width: 440px;
+            padding: 2.5rem;
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.6);
+            text-align: center;
+        }
+
+        .login-logo {
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            font-size: 1.5rem;
+            font-weight: 800;
+            color: #fff;
+            margin-bottom: 0.5rem;
+        }
+
+        .login-logo span {
+            color: var(--primary-red);
+        }
+
+        .login-logo img {
+            width: 42px;
+            height: 42px;
+            border-radius: 8px;
+            border: 1px solid var(--border-slate);
+        }
+
+        .login-sub {
+            color: var(--text-dim);
+            font-size: 0.9rem;
+            margin-bottom: 2rem;
+        }
+
+        .form-group {
+            margin-bottom: 1.25rem;
+            text-align: left;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.45rem;
+            color: #e2e8f0;
+            font-size: 0.88rem;
+            font-weight: 600;
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 12px 14px;
+            background: #0f172a;
+            border: 1px solid var(--border-slate);
+            border-radius: 6px;
+            color: #fff;
+            font-size: 0.95rem;
+            font-family: inherit;
+            transition: all 0.2s ease;
+        }
+
+        .form-control:focus {
+            outline: none;
+            border-color: var(--primary-red);
+            box-shadow: 0 0 0 3px rgba(239, 68, 68, 0.2);
+        }
+
+        .btn-red {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            background: var(--primary-red);
+            color: #fff;
+            font-weight: 700;
+            font-size: 0.95rem;
+            padding: 12px 24px;
+            border-radius: 6px;
+            border: none;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            box-shadow: 0 4px 14px rgba(239, 68, 68, 0.35);
+        }
+
+        .btn-red:hover {
+            background: var(--primary-red-hover);
+        }
+
+        .btn-outline {
+            background: transparent;
+            border: 1px solid var(--border-slate);
+            color: var(--text-light);
+            padding: 8px 16px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 0.85rem;
+            font-weight: 600;
+            transition: all 0.2s ease;
+        }
+
+        .btn-outline:hover {
+            background: rgba(255, 255, 255, 0.05);
+            border-color: var(--primary-red);
+            color: var(--primary-red);
+        }
+
+        .btn-danger-outline {
+            background: transparent;
+            border: 1px solid rgba(239, 68, 68, 0.4);
+            color: #fca5a5;
+            padding: 8px 14px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 0.85rem;
+            font-weight: 600;
+            transition: all 0.2s ease;
+        }
+
+        .btn-danger-outline:hover {
+            background: rgba(239, 68, 68, 0.15);
+            border-color: var(--primary-red);
+        }
+
+        .alert-box {
+            padding: 12px 16px;
+            border-radius: 6px;
+            margin-bottom: 1.25rem;
+            font-size: 0.88rem;
+            display: none;
+        }
+
+        .alert-error {
+            background: rgba(239, 68, 68, 0.12);
+            border: 1px solid rgba(239, 68, 68, 0.3);
+            color: #fca5a5;
+        }
+
+        .alert-success {
+            background: rgba(16, 185, 129, 0.12);
+            border: 1px solid rgba(16, 185, 129, 0.3);
+            color: #6ee7b7;
+        }
+
+        /* Admin Navbar */
+        .admin-nav {
+            background: #0f172a;
+            border-bottom: 1px solid var(--border-slate);
+            padding: 1rem 5%;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .nav-brand {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-size: 1.35rem;
+            font-weight: 700;
+            color: #fff;
+        }
+
+        .nav-brand span {
+            color: var(--primary-red);
+        }
+
+        .badge-admin {
+            background: rgba(239, 68, 68, 0.15);
+            border: 1px solid rgba(239, 68, 68, 0.3);
+            color: #f87171;
+            padding: 3px 10px;
+            border-radius: 6px;
+            font-size: 0.72rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-left: 8px;
+        }
+
+        .nav-actions {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        /* Layout Tabs */
+        .admin-container {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 2rem 5% 5rem;
+        }
+
+        .tab-bar {
+            display: flex;
+            gap: 10px;
+            border-bottom: 1px solid var(--border-slate);
+            margin-bottom: 2rem;
+            overflow-x: auto;
+        }
+
+        .tab-btn {
+            background: transparent;
+            border: none;
+            color: var(--text-dim);
+            font-size: 0.95rem;
+            font-weight: 600;
+            padding: 12px 20px;
+            cursor: pointer;
+            border-bottom: 2px solid transparent;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: all 0.2s ease;
+            white-space: nowrap;
+        }
+
+        .tab-btn:hover {
+            color: #fff;
+        }
+
+        .tab-btn.active {
+            color: var(--primary-red);
+            border-bottom-color: var(--primary-red);
+        }
+
+        .tab-content {
+            display: none;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        /* Cards */
+        .dash-card {
+            background: var(--surface-card);
+            border: 1px solid var(--border-slate);
+            border-radius: 10px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+        }
+
+        .card-title-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 15px;
+            margin-bottom: 1.5rem;
+            padding-bottom: 1rem;
+            border-bottom: 1px solid #334155;
+        }
+
+        .card-title-row h2 {
+            font-size: 1.35rem;
+            font-weight: 700;
+            color: #fff;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        /* Metric Grid */
+        .metrics-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 20px;
+            margin-bottom: 2rem;
+        }
+
+        .metric-card {
+            background: #0f172a;
+            border: 1px solid var(--border-slate);
+            border-radius: 8px;
+            padding: 1.5rem;
+            position: relative;
+        }
+
+        .metric-card.red-border {
+            border-left: 4px solid var(--primary-red);
+        }
+
+        .metric-card.call-border {
+            border-left: 4px solid #38bdf8;
+        }
+
+        .metric-card.wa-border {
+            border-left: 4px solid var(--whatsapp-green);
+        }
+
+        .metric-card.time-border {
+            border-left: 4px solid #a855f7;
+        }
+
+        .metric-label {
+            color: var(--text-dim);
+            font-size: 0.82rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 8px;
+        }
+
+        .metric-val {
+            font-size: 2rem;
+            font-weight: 800;
+            color: #fff;
+        }
+
+        .metric-sub {
+            font-size: 0.8rem;
+            color: var(--text-dim);
+            margin-top: 6px;
+        }
+
+        /* Tables */
+        .table-responsive {
+            width: 100%;
+            overflow-x: auto;
+        }
+
+        .data-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 0.9rem;
+            text-align: left;
+        }
+
+        .data-table th {
+            background: #0f172a;
+            color: #e2e8f0;
+            font-weight: 600;
+            padding: 14px 16px;
+            border-bottom: 1px solid var(--border-slate);
+            white-space: nowrap;
+        }
+
+        .data-table td {
+            padding: 14px 16px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            color: var(--text-muted);
+            vertical-align: middle;
+        }
+
+        .data-table tr:hover td {
+            background: rgba(239, 68, 68, 0.04);
+            color: #fff;
+        }
+
+        .badge-type {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding: 4px 10px;
+            border-radius: 4px;
+            font-size: 0.76rem;
+            font-weight: 700;
+            text-transform: uppercase;
+        }
+
+        .badge-call {
+            background: rgba(56, 189, 248, 0.15);
+            color: #38bdf8;
+            border: 1px solid rgba(56, 189, 248, 0.3);
+        }
+
+        .badge-wa {
+            background: rgba(37, 211, 102, 0.15);
+            color: #25D366;
+            border: 1px solid rgba(37, 211, 102, 0.3);
+        }
+
+        .badge-custom {
+            background: rgba(239, 68, 68, 0.15);
+            color: #f87171;
+            border: 1px solid rgba(239, 68, 68, 0.3);
+            font-size: 0.72rem;
+            font-weight: 700;
+            padding: 2px 8px;
+            border-radius: 4px;
+        }
+
+        .badge-default {
+            background: rgba(100, 116, 139, 0.15);
+            color: #94a3b8;
+            font-size: 0.72rem;
+            padding: 2px 8px;
+            border-radius: 4px;
+        }
+
+        /* Filter Controls */
+        .filter-strip {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            flex-wrap: wrap;
+            margin-bottom: 1.5rem;
+            background: #0f172a;
+            padding: 1rem 1.25rem;
+            border-radius: 8px;
+            border: 1px solid var(--border-slate);
+        }
+
+        .filter-strip select {
+            background: #1e293b;
+            border: 1px solid var(--border-slate);
+            color: #fff;
+            padding: 8px 12px;
+            border-radius: 6px;
+            font-size: 0.88rem;
+            outline: none;
+        }
+
+        @media (max-width: 768px) {
+            .dash-card {
+                padding: 1.25rem;
+            }
+            .card-title-row {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- SECURE LOGIN SCREEN -->
+    <div id="login-overlay">
+        <div class="login-card">
+            <div class="login-logo">
+                <img src="../city-logo.png" alt="CityHaldwani">
+                City<span>Haldwani</span>
+            </div>
+            <p class="login-sub">Administrative Control &amp; Click Duration Desk</p>
+
+            <div id="login-error" class="alert-box alert-error"></div>
+
+            <form id="login-form">
+                <div class="form-group">
+                    <label for="admin-user">Admin Username</label>
+                    <input type="text" id="admin-user" class="form-control" placeholder="Enter username" required autocomplete="username">
+                </div>
+                <div class="form-group">
+                    <label for="admin-pass">Access Password</label>
+                    <input type="password" id="admin-pass" class="form-control" placeholder="••••••••••••" required autocomplete="current-password">
+                </div>
+                <button type="submit" class="btn-red" style="width: 100%; margin-top: 0.5rem;">
+                    Authenticate &amp; Enter Dashboard
+                </button>
+            </form>
+            <p style="font-size: 0.78rem; color: #64748b; margin-top: 1.5rem;">
+                Default credentials: <code>admin</code> / <code>Haldwani@Admin2026!</code><br>Password can be updated in Settings tab.
+            </p>
+        </div>
+    </div>
+
+    <!-- MAIN DASHBOARD -->
+    <header class="admin-nav">
+        <div class="nav-brand">
+            <img src="../city-logo.png" alt="CityHaldwani" width="34" height="34" style="border-radius:6px; border:1px solid #334155;">
+            City<span>Haldwani</span> <span class="badge-admin">Admin Portal</span>
+        </div>
+        <div class="nav-actions">
+            <a href="/" target="_blank" class="btn-outline">Preview Live Site &rarr;</a>
+            <button id="btn-logout" class="btn-danger-outline">Log Out</button>
+        </div>
+    </header>
+
+    <main class="admin-container">
+        <!-- Tab Bar -->
+        <div class="tab-bar">
+            <button class="tab-btn active" data-tab="tab-contacts">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+                Contact Numbers Management
+            </button>
+            <button class="tab-btn" data-tab="tab-analytics">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+                Click Analytics &amp; Duration Tracker
+            </button>
+            <button class="tab-btn" data-tab="tab-settings">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>
+                Security &amp; Settings
+            </button>
+        </div>
+
+        <div id="action-notification" class="alert-box alert-success"></div>
+
+        <!-- TAB 1: CONTACT NUMBERS MANAGEMENT -->
+        <section id="tab-contacts" class="tab-content active">
+            <!-- Master Variable Card -->
+            <div class="dash-card">
+                <div class="card-title-row">
+                    <div>
+                        <h2>&#9889; Master Contact Variable (Site-Wide Fallback)</h2>
+                        <p style="color: var(--text-dim); font-size: 0.9rem; margin-top: 4px;">
+                            Updating this master variable updates all Call and WhatsApp buttons across all pages that inherit defaults.
+                        </p>
+                    </div>
+                    <button id="btn-save-master" class="btn-red">Update Master Numbers</button>
+                </div>
+
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 20px;">
+                    <div class="form-group">
+                        <label for="master-call">&#128222; Master Call Number</label>
+                        <input type="text" id="master-call" class="form-control" placeholder="+910000000000">
+                    </div>
+                    <div class="form-group">
+                        <label for="master-wa">&#128172; Master WhatsApp Number (with country code)</label>
+                        <input type="text" id="master-wa" class="form-control" placeholder="910000000000">
+                    </div>
+                </div>
+            </div>
+
+            <!-- Per-Page Numbers Table -->
+            <div class="dash-card">
+                <div class="card-title-row">
+                    <div>
+                        <h2>&#128196; Page-Specific Contact Assignment (28 Pages)</h2>
+                        <p style="color: var(--text-dim); font-size: 0.9rem; margin-top: 4px;">
+                            Assign custom numbers to any individual city page (e.g. Bangalore, Chandigarh, Haldwani) or leave empty to inherit master defaults.
+                        </p>
+                    </div>
+                    <div style="display: flex; gap: 10px;">
+                        <button id="btn-save-all-pages" class="btn-red">Save All Page Changes</button>
+                        <button id="btn-download-config" class="btn-outline">Download config.json</button>
+                    </div>
+                </div>
+
+                <div class="table-responsive">
+                    <table class="data-table" id="pages-contact-table">
+                        <thead>
+                            <tr>
+                                <th>Page Route</th>
+                                <th>Call Number</th>
+                                <th>WhatsApp Number</th>
+                                <th>Status</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody id="pages-tbody">
+                            <!-- Populated dynamically via JS -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+
+        <!-- TAB 2: CLICK ANALYTICS & DURATION -->
+        <section id="tab-analytics" class="tab-content">
+            <!-- Metrics Summary -->
+            <div class="metrics-grid">
+                <div class="metric-card red-border">
+                    <div class="metric-label">Total Button Clicks</div>
+                    <div class="metric-val" id="metric-total-clicks">0</div>
+                    <div class="metric-sub">Across all contact triggers</div>
+                </div>
+                <div class="metric-card call-border">
+                    <div class="metric-label">Call Clicks (Phone)</div>
+                    <div class="metric-val" id="metric-call-clicks">0</div>
+                    <div class="metric-sub">Direct telephone dials</div>
+                </div>
+                <div class="metric-card wa-border">
+                    <div class="metric-label">WhatsApp Inquiries</div>
+                    <div class="metric-val" id="metric-wa-clicks">0</div>
+                    <div class="metric-sub">WhatsApp conversations</div>
+                </div>
+                <div class="metric-card time-border">
+                    <div class="metric-label">Avg. Duration Before Click</div>
+                    <div class="metric-val" id="metric-avg-duration">0s</div>
+                    <div class="metric-sub">Visitor reading time on page</div>
+                </div>
+            </div>
+
+            <!-- Click Table Card -->
+            <div class="dash-card">
+                <div class="card-title-row">
+                    <div>
+                        <h2>&#128202; Real-Time Click Logs &amp; Duration Details</h2>
+                        <p style="color: var(--text-dim); font-size: 0.9rem; margin-top: 4px;">
+                            Monitor which companion cards or floating buttons users clicked, along with how long they spent on the page.
+                        </p>
+                    </div>
+                    <div style="display: flex; gap: 10px; align-items: center;">
+                        <button id="btn-test-click" class="btn-outline">+ Simulate Test Click</button>
+                        <button id="btn-export-csv" class="btn-outline">Export CSV</button>
+                        <button id="btn-clear-clicks" class="btn-danger-outline">Clear History</button>
+                    </div>
+                </div>
+
+                <!-- Filter Controls -->
+                <div class="filter-strip">
+                    <div>
+                        <label style="font-size: 0.8rem; color: var(--text-dim); display: block; margin-bottom: 4px;">Filter by Page:</label>
+                        <select id="filter-page-select">
+                            <option value="ALL">All Pages (Combined)</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label style="font-size: 0.8rem; color: var(--text-dim); display: block; margin-bottom: 4px;">Action Type:</label>
+                        <select id="filter-action-select">
+                            <option value="ALL">All Actions</option>
+                            <option value="call">Call Only</option>
+                            <option value="whatsapp">WhatsApp Only</option>
+                        </select>
+                    </div>
+                    <div style="margin-left: auto; align-self: flex-end;">
+                        <span id="click-count-display" style="font-size: 0.85rem; color: var(--primary-red); font-weight: 600;">0 clicks recorded</span>
+                    </div>
+                </div>
+
+                <div class="table-responsive">
+                    <table class="data-table">
+                        <thead>
+                            <tr>
+                                <th>Date &amp; Time</th>
+                                <th>Page URL</th>
+                                <th>Action</th>
+                                <th>Button / Profile Label</th>
+                                <th>Time On Page Before Click</th>
+                                <th>Device</th>
+                            </tr>
+                        </thead>
+                        <tbody id="clicks-tbody">
+                            <!-- Populated dynamically via JS -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+
+        <!-- TAB 3: SETTINGS -->
+        <section id="tab-settings" class="tab-content">
+            <div class="dash-card" style="max-width: 600px;">
+                <div class="card-title-row">
+                    <h2>&#128272; Change Admin Password</h2>
+                </div>
+                <form id="change-pass-form">
+                    <div class="form-group">
+                        <label for="old-pass">Current Password</label>
+                        <input type="password" id="old-pass" class="form-control" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="new-pass">New Password (Min 8 characters)</label>
+                        <input type="password" id="new-pass" class="form-control" required minlength="8">
+                    </div>
+                    <div class="form-group">
+                        <label for="confirm-pass">Confirm New Password</label>
+                        <input type="password" id="confirm-pass" class="form-control" required minlength="8">
+                    </div>
+                    <button type="submit" class="btn-red" style="margin-top: 10px;">Update Password</button>
+                </form>
+            </div>
+
+            <div class="dash-card" style="max-width: 600px;">
+                <div class="card-title-row">
+                    <h2>&#128190; Flat-File Architecture</h2>
+                </div>
+                <p style="color: var(--text-dim); font-size: 0.9rem; margin-bottom: 12px;">
+                    This admin panel operates without an external SQL/NoSQL database. All configuration and analytics are stored directly in your website folder via flat JSON files (<code>admin/contacts-config.json</code>, <code>admin/clicks.json</code>) and synchronized with local client storage.
+                </p>
+                <div style="display: flex; gap: 10px;">
+                    <button id="btn-export-full-backup" class="btn-outline">Download Full Backup JSON</button>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <script>
+    (function() {
+        'use strict';
+
+        const STORAGE_KEY_CONFIG = 'hald_contacts_config';
+        const STORAGE_KEY_CLICKS = 'hald_clicks_data';
+        const STORAGE_KEY_AUTH = 'hald_admin_auth';
+        const DEFAULT_SALT = 'hald_salt_2026';
+
+        // SHA-256 helper
+        async function sha256(str) {
+            const buffer = new TextEncoder().encode(str + DEFAULT_SALT);
+            const hash = await crypto.subtle.digest('SHA-256', buffer);
+            return Array.from(new Uint8Array(hash)).map(b => b.toString(16).padStart(2, '0')).join('');
+        }
+
+        // All Haldwani website pages (28 pages)
+        const ALL_PAGES = [
+            { route: 'index.html', title: 'Home Page (/)' },
+            { route: 'locations/bangalore.html', title: 'Bangalore Escorts' },
+            { route: 'locations/bhimtal.html', title: 'Bhimtal Escorts' },
+            { route: 'locations/chandigarh.html', title: 'Chandigarh Escorts' },
+            { route: 'locations/chennai.html', title: 'Chennai Escorts' },
+            { route: 'locations/dehradun.html', title: 'Dehradun Escorts' },
+            { route: 'locations/haldwani.html', title: 'Haldwani Escorts' },
+            { route: 'locations/himachal.html', title: 'Himachal Escorts' },
+            { route: 'locations/hyderabad.html', title: 'Hyderabad Escorts' },
+            { route: 'locations/indore.html', title: 'Indore Escorts' },
+            { route: 'locations/jaipur.html', title: 'Jaipur Escorts' },
+            { route: 'locations/ludhiana.html', title: 'Ludhiana Escorts' },
+            { route: 'locations/manali.html', title: 'Manali Escorts' },
+            { route: 'locations/mohali.html', title: 'Mohali Escorts' },
+            { route: 'locations/mussoorie.html', title: 'Mussoorie Escorts' },
+            { route: 'locations/nainital.html', title: 'Nainital Escorts' },
+            { route: 'locations/patiala.html', title: 'Patiala Escorts' },
+            { route: 'locations/pune.html', title: 'Pune Escorts' },
+            { route: 'locations/ramnagar.html', title: 'Ramnagar Escorts' },
+            { route: 'locations/rishikesh.html', title: 'Rishikesh Escorts' },
+            { route: 'locations/rudrapur.html', title: 'Rudrapur Escorts' },
+            { route: 'locations/shimla.html', title: 'Shimla Escorts' },
+            { route: 'locations/zirakpur.html', title: 'Zirakpur Escorts' },
+            { route: 'data-privacy.html', title: 'Data Privacy' },
+            { route: 'user-agreement.html', title: 'User Agreement' },
+            { route: 'report-violations.html', title: 'Report Violations' },
+            { route: 'escort-safety-rules.html', title: 'Escort Safety Rules' },
+            { route: 'support-helpdesk.html', title: 'Support Helpdesk' }
+        ];
+
+        // State
+        let currentConfig = {
+            master: { call: '+910000000000', whatsapp: '910000000000' },
+            pages: {}
+        };
+        let currentClicks = [];
+
+        // Check login
+        function checkAuth() {
+            const isAuth = sessionStorage.getItem('hald_admin_logged_in') === 'true';
+            const overlay = document.getElementById('login-overlay');
+            if (isAuth) {
+                overlay.style.display = 'none';
+                loadData();
+            } else {
+                overlay.style.display = 'flex';
+            }
+        }
+
+        // Login Submit
+        document.getElementById('login-form').addEventListener('submit', async function(e) {
+            e.preventDefault();
+            const u = document.getElementById('admin-user').value.trim();
+            const p = document.getElementById('admin-pass').value;
+            const errDiv = document.getElementById('login-error');
+
+            const storedHash = localStorage.getItem(STORAGE_KEY_AUTH);
+            const inputHash = await sha256(p);
+
+            // Default allowed: user="admin" and pass="Haldwani@Admin2026!"
+            const defaultExpectedHash = await sha256('Haldwani@Admin2026!');
+            const expected = storedHash || defaultExpectedHash;
+
+            if (u.toLowerCase() === 'admin' && inputHash === expected) {
+                sessionStorage.setItem('hald_admin_logged_in', 'true');
+                errDiv.style.display = 'none';
+                document.getElementById('login-overlay').style.display = 'none';
+                loadData();
+            } else {
+                errDiv.textContent = 'Invalid administrator credentials. Please try again.';
+                errDiv.style.display = 'block';
+            }
+        });
+
+        // Logout
+        document.getElementById('btn-logout').addEventListener('click', function() {
+            sessionStorage.removeItem('hald_admin_logged_in');
+            checkAuth();
+        });
+
+        // Tabs
+        document.querySelectorAll('.tab-btn').forEach(btn => {
+            btn.addEventListener('click', function() {
+                document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+                document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
+                btn.classList.add('active');
+                const target = btn.getAttribute('data-tab');
+                document.getElementById(target).classList.add('active');
+                if (target === 'tab-analytics') renderAnalytics();
+            });
+        });
+
+        // Show Notification
+        function notify(msg, isError = false) {
+            const n = document.getElementById('action-notification');
+            n.textContent = msg;
+            n.className = 'alert-box ' + (isError ? 'alert-error' : 'alert-success');
+            n.style.display = 'block';
+            setTimeout(() => { n.style.display = 'none'; }, 4000);
+        }
+
+        // Load Data from config/localStorage
+        function loadData() {
+            // 1. Load config
+            try {
+                const stored = localStorage.getItem(STORAGE_KEY_CONFIG);
+                if (stored) {
+                    currentConfig = JSON.parse(stored);
+                } else if (window.SITE_CONTACTS_CONFIG) {
+                    currentConfig = window.SITE_CONTACTS_CONFIG;
+                }
+            } catch(e) {}
+
+            // Populate Master inputs
+            document.getElementById('master-call').value = currentConfig.master.call || '+910000000000';
+            document.getElementById('master-wa').value = currentConfig.master.whatsapp || '910000000000';
+
+            // Populate Page-Specific Table
+            renderPagesTable();
+
+            // Populate Page Filter dropdown
+            const filterSelect = document.getElementById('filter-page-select');
+            filterSelect.innerHTML = '<option value="ALL">All Pages (Combined)</option>';
+            ALL_PAGES.forEach(p => {
+                const opt = document.createElement('option');
+                opt.value = p.route;
+                opt.textContent = p.title + ' (' + p.route + ')';
+                filterSelect.appendChild(opt);
+            });
+
+            // 2. Load Clicks
+            loadClicks();
+        }
+
+        function loadClicks() {
+            try {
+                const storedClicks = localStorage.getItem(STORAGE_KEY_CLICKS);
+                if (storedClicks) {
+                    currentClicks = JSON.parse(storedClicks);
+                } else {
+                    currentClicks = [];
+                }
+            } catch(e) {
+                currentClicks = [];
+            }
+            renderAnalytics();
+        }
+
+        // Render Pages Table
+        function renderPagesTable() {
+            const tbody = document.getElementById('pages-tbody');
+            tbody.innerHTML = '';
+
+            ALL_PAGES.forEach(page => {
+                const pageEntry = currentConfig.pages[page.route] || {};
+                const customCall = pageEntry.call || '';
+                const customWA = pageEntry.whatsapp || '';
+                const isCustom = Boolean(customCall.trim() || customWA.trim());
+
+                const tr = document.createElement('tr');
+                tr.innerHTML = `
+                    <td>
+                        <strong style="color: #fff;">${page.title}</strong><br>
+                        <span style="font-size: 0.78rem; color: #64748b;">${page.route}</span>
+                    </td>
+                    <td>
+                        <input type="text" class="form-control page-call-input" data-route="${page.route}"
+                            placeholder="Default: ${currentConfig.master.call}" value="${customCall}" style="width: 170px; padding: 6px 10px; font-size: 0.85rem;">
+                    </td>
+                    <td>
+                        <input type="text" class="form-control page-wa-input" data-route="${page.route}"
+                            placeholder="Default: ${currentConfig.master.whatsapp}" value="${customWA}" style="width: 170px; padding: 6px 10px; font-size: 0.85rem;">
+                    </td>
+                    <td>
+                        ${isCustom ? '<span class="badge-custom">Custom Active</span>' : '<span class="badge-default">Master Default</span>'}
+                    </td>
+                    <td>
+                        <button class="btn-outline btn-save-row" data-route="${page.route}" style="padding: 4px 10px; font-size: 0.78rem;">Save</button>
+                        ${isCustom ? `<button class="btn-danger-outline btn-reset-row" data-route="${page.route}" style="padding: 4px 10px; font-size: 0.78rem; margin-left: 6px;">Reset</button>` : ''}
+                    </td>
+                `;
+                tbody.appendChild(tr);
+            });
+
+            // Bind single row saves
+            tbody.querySelectorAll('.btn-save-row').forEach(b => {
+                b.addEventListener('click', function() {
+                    const r = b.getAttribute('data-route');
+                    const row = b.closest('tr');
+                    const cVal = row.querySelector('.page-call-input').value.trim();
+                    const wVal = row.querySelector('.page-wa-input').value.trim();
+                    currentConfig.pages[r] = { call: cVal, whatsapp: wVal };
+                    saveConfigToStorage();
+                    renderPagesTable();
+                    notify(`Updated numbers for ${r}`);
+                });
+            });
+
+            // Bind row resets
+            tbody.querySelectorAll('.btn-reset-row').forEach(b => {
+                b.addEventListener('click', function() {
+                    const r = b.getAttribute('data-route');
+                    delete currentConfig.pages[r];
+                    saveConfigToStorage();
+                    renderPagesTable();
+                    notify(`Reset ${r} back to master defaults`);
+                });
+            });
+        }
+
+        // Save Master
+        document.getElementById('btn-save-master').addEventListener('click', function() {
+            const mCall = document.getElementById('master-call').value.trim();
+            const mWA = document.getElementById('master-wa').value.trim();
+            if (!mCall || !mWA) {
+                notify('Please provide valid numbers for both Call and WhatsApp', true);
+                return;
+            }
+            currentConfig.master = { call: mCall, whatsapp: mWA };
+            saveConfigToStorage();
+            renderPagesTable();
+            notify('Master contact numbers updated successfully across all pages!');
+        });
+
+        // Save All Pages
+        document.getElementById('btn-save-all-pages').addEventListener('click', function() {
+            document.querySelectorAll('#pages-tbody tr').forEach(row => {
+                const callIn = row.querySelector('.page-call-input');
+                const waIn = row.querySelector('.page-wa-input');
+                const route = callIn.getAttribute('data-route');
+                const cVal = callIn.value.trim();
+                const wVal = waIn.value.trim();
+                if (cVal || wVal) {
+                    currentConfig.pages[route] = { call: cVal, whatsapp: wVal };
+                } else {
+                    delete currentConfig.pages[route];
+                }
+            });
+            saveConfigToStorage();
+            renderPagesTable();
+            notify('All page assignments saved successfully!');
+        });
+
+        // Save config
+        function saveConfigToStorage() {
+            localStorage.setItem(STORAGE_KEY_CONFIG, JSON.stringify(currentConfig));
+            window.dispatchEvent(new Event('storage'));
+
+            fetch('/api/config', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(currentConfig)
+            }).catch(() => {});
+        }
+
+        // Download config.json
+        document.getElementById('btn-download-config').addEventListener('click', function() {
+            const blob = new Blob([JSON.stringify(currentConfig, null, 2)], { type: 'application/json' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = 'contacts-config.json';
+            a.click();
+            URL.revokeObjectURL(url);
+        });
+
+        // Download full backup
+        document.getElementById('btn-export-full-backup').addEventListener('click', function() {
+            const backup = {
+                site: 'CityHaldwani',
+                exportedAt: new Date().toISOString(),
+                config: currentConfig,
+                clicks: currentClicks
+            };
+            const blob = new Blob([JSON.stringify(backup, null, 2)], { type: 'application/json' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = 'cityhaldwani_full_backup.json';
+            a.click();
+            URL.revokeObjectURL(url);
+        });
+
+        // RENDER ANALYTICS
+        function renderAnalytics() {
+            const filterPage = document.getElementById('filter-page-select').value;
+            const filterAction = document.getElementById('filter-action-select').value;
+
+            let filtered = currentClicks;
+            if (filterPage !== 'ALL') {
+                filtered = filtered.filter(c => c.page === filterPage || c.page.endsWith(filterPage));
+            }
+            if (filterAction !== 'ALL') {
+                filtered = filtered.filter(c => c.type === filterAction);
+            }
+
+            const total = filtered.length;
+            const calls = filtered.filter(c => c.type === 'call').length;
+            const was = filtered.filter(c => c.type === 'whatsapp').length;
+            const totalSec = filtered.reduce((acc, c) => acc + (c.durationSeconds || 0), 0);
+            const avgSec = total > 0 ? Math.round(totalSec / total) : 0;
+
+            document.getElementById('metric-total-clicks').textContent = total;
+            document.getElementById('metric-call-clicks').textContent = calls;
+            document.getElementById('metric-wa-clicks').textContent = was;
+            document.getElementById('metric-avg-duration').textContent = avgSec < 60 ? avgSec + 's' : Math.floor(avgSec/60) + 'm ' + (avgSec%60) + 's';
+            document.getElementById('click-count-display').textContent = `${total} clicks shown`;
+
+            const tbody = document.getElementById('clicks-tbody');
+            tbody.innerHTML = '';
+
+            if (filtered.length === 0) {
+                tbody.innerHTML = '<tr><td colspan="6" style="text-align: center; padding: 2rem; color: #64748b;">No click activity recorded yet for this view.</td></tr>';
+                return;
+            }
+
+            filtered.slice(0, 150).forEach(c => {
+                const tr = document.createElement('tr');
+                const isCall = c.type === 'call';
+                tr.innerHTML = `
+                    <td style="white-space: nowrap;">${c.localTime || c.timestamp}</td>
+                    <td><span style="color: #fff; font-weight: 500;">${c.page}</span></td>
+                    <td>
+                        <span class="badge-type ${isCall ? 'badge-call' : 'badge-wa'}">
+                            ${isCall ? '&#128222; Call' : '&#128172; WhatsApp'}
+                        </span>
+                    </td>
+                    <td><strong style="color: #e2e8f0;">${c.label || 'Direct Button'}</strong></td>
+                    <td>
+                        <span style="font-weight: 700; color: #a855f7;">${c.durationFormatted || c.durationSeconds + 's'}</span>
+                        <span style="font-size: 0.75rem; color: #64748b;">(${c.durationSeconds}s)</span>
+                    </td>
+                    <td>${c.device === 'Mobile' ? '&#128241; Mobile' : '&#128187; Desktop'}</td>
+                `;
+                tbody.appendChild(tr);
+            });
+        }
+
+        document.getElementById('filter-page-select').addEventListener('change', renderAnalytics);
+        document.getElementById('filter-action-select').addEventListener('change', renderAnalytics);
+
+        // Simulate Test Click
+        document.getElementById('btn-test-click').addEventListener('click', function() {
+            const types = ['call', 'whatsapp'];
+            const randomType = types[Math.floor(Math.random() * types.length)];
+            const randomPage = ALL_PAGES[Math.floor(Math.random() * ALL_PAGES.length)].route;
+            const randomSec = Math.floor(Math.random() * 95) + 4;
+            const models = ['Floating Call Button', 'Floating WhatsApp Button', 'Profile: Tanya (Bangalore)', 'Profile: Pooja (Haldwani)', 'Profile: Priya (Dehradun)', 'Profile: Simran (Chandigarh)'];
+            const randomLabel = models[Math.floor(Math.random() * models.length)];
+
+            const testEvent = {
+                id: 'test_' + Date.now(),
+                site: 'CityHaldwani',
+                type: randomType,
+                page: randomPage,
+                label: randomLabel,
+                durationSeconds: randomSec,
+                durationFormatted: randomSec < 60 ? randomSec + 's' : Math.floor(randomSec/60) + 'm ' + (randomSec%60) + 's',
+                timestamp: new Date().toISOString(),
+                localTime: new Date().toLocaleString(),
+                device: Math.random() > 0.4 ? 'Mobile' : 'Desktop'
+            };
+
+            currentClicks.unshift(testEvent);
+            localStorage.setItem(STORAGE_KEY_CLICKS, JSON.stringify(currentClicks));
+            renderAnalytics();
+            notify('Generated simulated user click event!');
+        });
+
+        // Clear Clicks
+        document.getElementById('btn-clear-clicks').addEventListener('click', function() {
+            if (confirm('Are you sure you want to clear all tracked click logs? This cannot be undone.')) {
+                currentClicks = [];
+                localStorage.setItem(STORAGE_KEY_CLICKS, JSON.stringify([]));
+                renderAnalytics();
+                notify('Click analytics log cleared.');
+            }
+        });
+
+        // Export CSV
+        document.getElementById('btn-export-csv').addEventListener('click', function() {
+            if (currentClicks.length === 0) {
+                notify('No clicks to export!', true);
+                return;
+            }
+            let csv = 'Timestamp,Page,Action,Target_Label,Duration_Seconds,Duration_Formatted,Device\n';
+            currentClicks.forEach(c => {
+                csv += `"${c.localTime || c.timestamp}","${c.page}","${c.type}","${(c.label || '').replace(/"/g, '""')}",${c.durationSeconds},"${c.durationFormatted}","${c.device}"\n`;
+            });
+            const blob = new Blob([csv], { type: 'text/csv' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = `cityhaldwani_click_analytics_${Date.now()}.csv`;
+            a.click();
+            URL.revokeObjectURL(url);
+        });
+
+        // Change Password Form
+        document.getElementById('change-pass-form').addEventListener('submit', async function(e) {
+            e.preventDefault();
+            const oldP = document.getElementById('old-pass').value;
+            const newP = document.getElementById('new-pass').value;
+            const confP = document.getElementById('confirm-pass').value;
+
+            if (newP !== confP) {
+                notify('New passwords do not match!', true);
+                return;
+            }
+
+            const storedHash = localStorage.getItem(STORAGE_KEY_AUTH);
+            const defaultExpectedHash = await sha256('Haldwani@Admin2026!');
+            const expected = storedHash || defaultExpectedHash;
+            const oldHash = await sha256(oldP);
+
+            if (oldHash !== expected) {
+                notify('Current password is incorrect!', true);
+                return;
+            }
+
+            const newHash = await sha256(newP);
+            localStorage.setItem(STORAGE_KEY_AUTH, newHash);
+            document.getElementById('change-pass-form').reset();
+            notify('Admin password changed successfully!');
+        });
+
+        // Listen for live clicks from other tabs
+        window.addEventListener('site_click_recorded', function(e) {
+            if (e.detail) {
+                currentClicks.unshift(e.detail);
+                renderAnalytics();
+            }
+        });
+
+        // Init
+        checkAuth();
+    })();
+    </script>
+</body>
+</html>
