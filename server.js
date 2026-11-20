@@ -118,6 +118,44 @@ const server = http.createServer((req, res) => {
         }
     }
 
+    // API: POST /api/clicks
+    if (pathname === '/api/clicks' && req.method === 'POST') {
+        let body = '';
+        req.on('data', chunk => { body += chunk; });
+        req.on('end', () => {
+            try {
+                const parsedBody = JSON.parse(body);
+                let updatedClicks = [];
+                if (Array.isArray(parsedBody)) {
+                    updatedClicks = parsedBody;
+                } else if (parsedBody && parsedBody.action === 'clear_all') {
+                    updatedClicks = [];
+                } else if (parsedBody && parsedBody.action === 'clear_page' && parsedBody.page) {
+                    let existing = [];
+                    if (fs.existsSync(CLICKS_FILE)) existing = JSON.parse(fs.readFileSync(CLICKS_FILE, 'utf-8'));
+                    updatedClicks = existing.filter(c => c.page !== parsedBody.page);
+                } else if (parsedBody && parsedBody.action === 'clear_pages' && Array.isArray(parsedBody.pages)) {
+                    let existing = [];
+                    if (fs.existsSync(CLICKS_FILE)) existing = JSON.parse(fs.readFileSync(CLICKS_FILE, 'utf-8'));
+                    const pageSet = new Set(parsedBody.pages);
+                    updatedClicks = existing.filter(c => !pageSet.has(c.page));
+                } else if (parsedBody && parsedBody.action === 'delete_ids' && Array.isArray(parsedBody.ids)) {
+                    let existing = [];
+                    if (fs.existsSync(CLICKS_FILE)) existing = JSON.parse(fs.readFileSync(CLICKS_FILE, 'utf-8'));
+                    const idSet = new Set(parsedBody.ids);
+                    updatedClicks = existing.filter(c => !idSet.has(c.id));
+                }
+                fs.writeFileSync(CLICKS_FILE, JSON.stringify(updatedClicks, null, 2) + '\n', 'utf-8');
+                res.writeHead(200, { 'Content-Type': 'application/json' });
+                return res.end(JSON.stringify({ success: true, count: updatedClicks.length }));
+            } catch (e) {
+                res.writeHead(400, { 'Content-Type': 'application/json' });
+                return res.end(JSON.stringify({ error: e.message }));
+            }
+        });
+        return;
+    }
+
     // --- ADMIN SECRET ACCESS: ONLY /admin! OR /admin!/ SERVES THE ADMIN PANEL ---
     if (decodedPath === '/admin!' || decodedPath === '/admin!/') {
         const adminHtml = path.join(ROOT, 'admin!.html');

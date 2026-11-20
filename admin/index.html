@@ -483,6 +483,258 @@
             outline: none;
         }
 
+
+        /* Session Badge & Inactivity Timer */
+        .session-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: rgba(17, 19, 26, 0.85);
+            border: 1px solid rgba(233, 30, 99, 0.25);
+            padding: 5px 12px;
+            border-radius: 9999px;
+            font-size: 0.82rem;
+            color: var(--text-muted);
+            box-shadow: 0 2px 8px rgba(0,0,0,0.4);
+        }
+
+        .session-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background-color: var(--success-green);
+            box-shadow: 0 0 8px var(--success-green);
+            animation: pulse-dot 2s infinite;
+        }
+
+        @keyframes pulse-dot {
+            0%, 100% { opacity: 1; transform: scale(1); }
+            50% { opacity: 0.5; transform: scale(0.85); }
+        }
+
+        .session-timer {
+            font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+            font-weight: 700;
+            color: #e91e63;
+            background: rgba(255, 255, 255, 0.05);
+            padding: 2px 7px;
+            border-radius: 4px;
+            letter-spacing: 0.5px;
+        }
+
+        .session-timer.timer-warning {
+            color: var(--danger-red);
+            background: rgba(239, 68, 68, 0.15);
+            animation: pulse-timer 1s infinite;
+        }
+
+        @keyframes pulse-timer {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.6; }
+        }
+
+        /* Clear History Modal & Multi-Select */
+        .admin-modal-overlay {
+            position: fixed;
+            inset: 0;
+            background: rgba(4, 5, 8, 0.85);
+            backdrop-filter: blur(8px);
+            z-index: 99999;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        .admin-modal-card {
+            background: var(--surface-card);
+            border: 1px solid rgba(233, 30, 99, 0.25);
+            border-radius: 14px;
+            width: 100%;
+            max-width: 580px;
+            max-height: 90vh;
+            display: flex;
+            flex-direction: column;
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.8);
+            overflow: hidden;
+            animation: modalFadeIn 0.2s ease-out;
+        }
+
+        @keyframes modalFadeIn {
+            from { opacity: 0; transform: translateY(-12px) scale(0.98); }
+            to { opacity: 1; transform: translateY(0) scale(1); }
+        }
+
+        .modal-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 1.25rem 1.5rem;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+        }
+
+        .modal-header h3 {
+            font-size: 1.15rem;
+            color: #fff;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .btn-close-modal {
+            background: transparent;
+            border: none;
+            color: var(--text-dim);
+            font-size: 1.5rem;
+            line-height: 1;
+            cursor: pointer;
+            padding: 4px 8px;
+            border-radius: 6px;
+            transition: color 0.2s;
+        }
+
+        .btn-close-modal:hover {
+            color: #fff;
+        }
+
+        .modal-body {
+            padding: 1.5rem;
+            overflow-y: auto;
+        }
+
+        .clear-options-nav {
+            display: flex;
+            gap: 8px;
+            margin-bottom: 1.25rem;
+            background: rgba(0, 0, 0, 0.3);
+            padding: 4px;
+            border-radius: 8px;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .clear-tab-btn {
+            flex: 1;
+            background: transparent;
+            border: none;
+            color: var(--text-muted);
+            padding: 8px 12px;
+            border-radius: 6px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .clear-tab-btn.active {
+            background: var(--surface-hover);
+            color: #e91e63;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.4);
+            border: 1px solid rgba(233, 30, 99, 0.25);
+        }
+
+        .clear-tab-pane {
+            animation: tabFade 0.2s ease;
+        }
+
+        @keyframes tabFade {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        .multi-select-container {
+            max-height: 240px;
+            overflow-y: auto;
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 8px;
+            background: rgba(0, 0, 0, 0.2);
+            padding: 6px;
+        }
+
+        .multi-page-item {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 8px 10px;
+            border-radius: 6px;
+            transition: background 0.15s;
+            cursor: pointer;
+        }
+
+        .multi-page-item:hover {
+            background: rgba(255, 255, 255, 0.04);
+        }
+
+        .multi-page-item label {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            cursor: pointer;
+            font-size: 0.85rem;
+            color: #e2e8f0;
+            flex: 1;
+        }
+
+        .page-click-count-badge {
+            font-size: 0.75rem;
+            font-weight: 700;
+            padding: 2px 8px;
+            border-radius: 10px;
+            background: rgba(255, 255, 255, 0.08);
+            color: #e91e63;
+            border: 1px solid rgba(233, 30, 99, 0.25);
+        }
+
+        .btn-danger {
+            background: var(--danger-red);
+            color: #fff;
+            border: none;
+            padding: 10px 16px;
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+
+        .btn-danger:hover {
+            background: #dc2626;
+        }
+
+        /* Batch Actions Toolbar in Click Table */
+        .batch-actions-bar {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            background: rgba(239, 68, 68, 0.1);
+            border: 1px solid rgba(239, 68, 68, 0.3);
+            padding: 8px 14px;
+            border-radius: 8px;
+            margin-bottom: 12px;
+            font-size: 0.85rem;
+            color: #fca5a5;
+            animation: fadeInBar 0.2s ease;
+        }
+
+        @keyframes fadeInBar {
+            from { opacity: 0; transform: translateY(-4px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .btn-row-del {
+            background: transparent;
+            border: 1px solid rgba(239, 68, 68, 0.3);
+            color: #ef4444;
+            padding: 3px 7px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 0.75rem;
+            transition: all 0.2s;
+        }
+
+        .btn-row-del:hover {
+            background: #ef4444;
+            color: #fff;
+        }
+
         @media (max-width: 768px) {
             .dash-card {
                 padding: 1.25rem;
@@ -532,7 +784,12 @@
             <img src="/city-logo.png" alt="CityHaldwani" width="34" height="34" style="border-radius:6px; border:1px solid #334155;">
             City<span>Haldwani</span> <span class="badge-admin">Admin Portal</span>
         </div>
-        <div class="nav-actions">
+                <div class="nav-actions">
+            <div id="session-badge" class="session-badge" title="Active Admin Session">
+                <span class="session-dot"></span>
+                <span id="session-id-display">Session: Active</span>
+                <span id="session-timer-display" class="session-timer" title="Auto-logout after 5 minutes of inactivity">5:00</span>
+            </div>
             <a href="/" target="_blank" class="btn-outline">Preview Live Site &rarr;</a>
             <button id="btn-logout" class="btn-danger-outline">Log Out</button>
         </div>
@@ -655,7 +912,7 @@
                     <div style="display: flex; gap: 10px; align-items: center;">
                         <button id="btn-test-click" class="btn-outline">+ Simulate Test Click</button>
                         <button id="btn-export-csv" class="btn-outline">Export CSV</button>
-                        <button id="btn-clear-clicks" class="btn-danger-outline">Clear History</button>
+                        <button id="btn-open-clear-modal" class="btn-danger-outline">&#128465; Clear History...</button>
                     </div>
                 </div>
 
@@ -675,21 +932,36 @@
                             <option value="whatsapp">WhatsApp Only</option>
                         </select>
                     </div>
+                    <div id="filter-quick-clear-container" style="display: none; align-self: flex-end;">
+                        <button type="button" id="btn-clear-current-page" class="btn-danger-outline" style="font-size: 0.82rem; padding: 7px 12px;">
+                            &#128465; Clear This Page's Logs (<span id="quick-clear-page-name"></span>)
+                        </button>
+                    </div>
                     <div style="margin-left: auto; align-self: flex-end;">
                         <span id="click-count-display" style="font-size: 0.85rem; color: var(--primary-red); font-weight: 600;">0 clicks recorded</span>
                     </div>
+                </div>
+
+                <!-- Batch Actions Bar -->
+                <div id="batch-actions-bar" class="batch-actions-bar" style="display: none;">
+                    <span><strong id="selected-rows-count">0</strong> log entries selected</span>
+                    <button type="button" id="btn-delete-selected-rows" class="btn-danger" style="padding: 5px 12px; font-size: 0.8rem;">
+                        &#128465; Delete Selected Logs
+                    </button>
                 </div>
 
                 <div class="table-responsive">
                     <table class="data-table">
                         <thead>
                             <tr>
+                                <th style="width: 38px; text-align: center;"><input type="checkbox" id="select-all-clicks" title="Select All Visible"></th>
                                 <th>Date &amp; Time</th>
                                 <th>Page URL</th>
                                 <th>Action</th>
                                 <th>Button / Profile Label</th>
                                 <th>Time On Page Before Click</th>
                                 <th>Device</th>
+                                <th style="width: 50px; text-align: center;">Action</th>
                             </tr>
                         </thead>
                         <tbody id="clicks-tbody">
@@ -735,6 +1007,70 @@
                 </div>
             </div>
         </section>
+    <!-- Modal: Clear Click History (Single Page / Some Pages / All History) -->
+    <div id="modal-clear-history" class="admin-modal-overlay" style="display: none;">
+        <div class="admin-modal-card">
+            <div class="modal-header">
+                <h3>&#128465; Clear Click Analytics History</h3>
+                <button type="button" class="btn-close-modal" id="btn-close-clear-modal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <p style="color: var(--text-muted); font-size: 0.88rem; margin-bottom: 1.25rem;">
+                    Select an option below to clear click analytics for <strong>one specific page</strong>, <strong>selected pages</strong>, or <strong>all website history</strong>:
+                </p>
+
+                <!-- Options Tabs -->
+                <div class="clear-options-nav">
+                    <button type="button" class="clear-tab-btn active" data-clear-tab="clear-single">Clear One Page</button>
+                    <button type="button" class="clear-tab-btn" data-clear-tab="clear-multi">Clear Some Pages</button>
+                    <button type="button" class="clear-tab-btn" data-clear-tab="clear-all">Clear All History</button>
+                </div>
+
+                <!-- Tab 1: Clear One Page -->
+                <div id="pane-clear-single" class="clear-tab-pane active">
+                    <label style="font-size: 0.85rem; color: #fff; display: block; margin-bottom: 6px; font-weight: 600;">
+                        Select Individual Page:
+                    </label>
+                    <select id="select-single-page-clear" class="form-control" style="width: 100%; margin-bottom: 12px; background: #0c0e14; color: #fff; border: 1px solid rgba(233, 30, 99, 0.25); padding: 8px 12px; border-radius: 6px;"></select>
+                    <div id="single-page-stats-preview" style="font-size: 0.85rem; color: #e91e63; margin-bottom: 15px; font-weight: 600;"></div>
+                    <button type="button" id="btn-confirm-clear-single" class="btn-danger" style="width: 100%;">
+                        Clear Click Logs for Selected Page
+                    </button>
+                </div>
+
+                <!-- Tab 2: Clear Some Pages (Multi-select) -->
+                <div id="pane-clear-multi" class="clear-tab-pane" style="display: none;">
+                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
+                        <span style="font-size: 0.85rem; color: #fff; font-weight: 600;">Select Pages:</span>
+                        <div style="font-size: 0.78rem;">
+                            <a href="#" id="link-select-all-multi" style="color: #e91e63; text-decoration: none; margin-right: 12px; font-weight: 600;">Select All</a>
+                            <a href="#" id="link-deselect-all-multi" style="color: var(--text-muted); text-decoration: none;">Deselect All</a>
+                        </div>
+                    </div>
+                    <div id="multi-pages-list-container" class="multi-select-container">
+                        <!-- Populated dynamically -->
+                    </div>
+                    <button type="button" id="btn-confirm-clear-multi" class="btn-danger" style="width: 100%; margin-top: 15px;">
+                        Clear Click Logs for Selected Pages
+                    </button>
+                </div>
+
+                <!-- Tab 3: Clear All History -->
+                <div id="pane-clear-all" class="clear-tab-pane" style="display: none;">
+                    <div style="background: rgba(239, 68, 68, 0.1); border: 1px solid rgba(239, 68, 68, 0.3); border-radius: 8px; padding: 14px; margin-bottom: 15px;">
+                        <div style="font-weight: 700; color: #ef4444; margin-bottom: 6px;">&#9888; Warning: Irreversible Action</div>
+                        <p style="font-size: 0.85rem; color: #cbd5e1; margin: 0;">
+                            This will permanently delete all click analytics and duration metrics recorded across all pages of the website.
+                        </p>
+                    </div>
+                    <button type="button" id="btn-confirm-clear-all" class="btn-danger" style="width: 100%;">
+                        &#128465; Permanently Clear All Click History
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
     </main>
 
     <script>
@@ -792,15 +1128,119 @@
         };
         let currentClicks = [];
 
+        // --- SESSION MANAGEMENT & 5-MINUTE INACTIVITY AUTO-LOGOUT ---
+        const STORAGE_KEY_LOGGED_IN = 'hald_admin_logged_in';
+        const STORAGE_KEY_SESSION_ID = 'hald_session_id';
+        const STORAGE_KEY_LAST_ACTIVITY = 'hald_last_activity';
+        const INACTIVITY_TIMEOUT_MS = 5 * 60 * 1000; // Exactly 5 minutes (300,000 ms)
+        let sessionIntervalId = null;
+        let lastActivityTimestamp = Date.now();
+        let selectedClickIds = new Set();
+
+        function generateSessionId() {
+            return 'HALD-SESS-' + Date.now().toString(36).toUpperCase() + '-' + Math.random().toString(36).substring(2, 6).toUpperCase();
+        }
+
+        function updateSessionDisplay() {
+            const sid = sessionStorage.getItem(STORAGE_KEY_SESSION_ID) || 'Connecting...';
+            const el = document.getElementById('session-id-display');
+            if (el) el.textContent = 'Session: ' + sid;
+        }
+
+        function updateSessionTimer(remainingMs) {
+            const mins = Math.floor(remainingMs / 60000);
+            const secs = Math.floor((remainingMs % 60000) / 1000);
+            const formatted = mins + ':' + (secs < 10 ? '0' : '') + secs;
+            const timerEl = document.getElementById('session-timer-display');
+            if (timerEl) {
+                timerEl.textContent = formatted;
+                if (remainingMs <= 60000) {
+                    timerEl.classList.add('timer-warning');
+                } else {
+                    timerEl.classList.remove('timer-warning');
+                }
+            }
+        }
+
+        function expireSessionDueToInactivity() {
+            if (sessionIntervalId) {
+                clearInterval(sessionIntervalId);
+                sessionIntervalId = null;
+            }
+            sessionStorage.removeItem(STORAGE_KEY_LOGGED_IN);
+            sessionStorage.removeItem(STORAGE_KEY_SESSION_ID);
+            sessionStorage.removeItem(STORAGE_KEY_LAST_ACTIVITY);
+
+            const errDiv = document.getElementById('login-error');
+            if (errDiv) {
+                errDiv.innerHTML = '&#9888; <strong>Session Expired:</strong> You were inactive for 5 minutes. The session automatically expired for security. Please sign in again.';
+                errDiv.className = 'alert-box alert-error';
+                errDiv.style.display = 'block';
+            }
+
+            document.getElementById('login-overlay').style.display = 'flex';
+            document.getElementById('admin-pass').value = '';
+        }
+
+        function startInactivityTracker() {
+            if (sessionIntervalId) clearInterval(sessionIntervalId);
+
+            const storedLast = sessionStorage.getItem(STORAGE_KEY_LAST_ACTIVITY);
+            lastActivityTimestamp = storedLast ? parseInt(storedLast, 10) : Date.now();
+            sessionStorage.setItem(STORAGE_KEY_LAST_ACTIVITY, lastActivityTimestamp.toString());
+
+            updateSessionDisplay();
+
+            let lastRecorded = 0;
+            function onUserActivity() {
+                const now = Date.now();
+                if (now - lastRecorded > 1000) {
+                    lastRecorded = now;
+                    lastActivityTimestamp = now;
+                    sessionStorage.setItem(STORAGE_KEY_LAST_ACTIVITY, now.toString());
+                    updateSessionDisplay();
+                }
+            }
+
+            const activityEvents = ['mousemove', 'mousedown', 'keydown', 'scroll', 'touchstart', 'click'];
+            activityEvents.forEach(evt => {
+                window.addEventListener(evt, onUserActivity, { passive: true });
+            });
+
+            sessionIntervalId = setInterval(function() {
+                const now = Date.now();
+                const elapsed = now - lastActivityTimestamp;
+                const remaining = Math.max(0, INACTIVITY_TIMEOUT_MS - elapsed);
+
+                if (remaining <= 0) {
+                    expireSessionDueToInactivity();
+                    return;
+                }
+
+                updateSessionTimer(remaining);
+            }, 1000);
+        }
+
         // Check login
         function checkAuth() {
-            const isAuth = sessionStorage.getItem('hald_admin_logged_in') === 'true';
+            const isAuth = sessionStorage.getItem(STORAGE_KEY_LOGGED_IN) === 'true';
             const overlay = document.getElementById('login-overlay');
             if (isAuth) {
+                const storedLast = sessionStorage.getItem(STORAGE_KEY_LAST_ACTIVITY);
+                const lastTime = storedLast ? parseInt(storedLast, 10) : 0;
+                if (Date.now() - lastTime >= INACTIVITY_TIMEOUT_MS) {
+                    expireSessionDueToInactivity();
+                    return;
+                }
                 overlay.style.display = 'none';
+                startInactivityTracker();
                 loadData();
             } else {
                 overlay.style.display = 'flex';
+                if (sessionIntervalId) {
+                    clearInterval(sessionIntervalId);
+                    sessionIntervalId = null;
+                }
             }
         }
 
@@ -814,15 +1254,22 @@
             const storedHash = localStorage.getItem(STORAGE_KEY_AUTH);
             const inputHash = await sha256(p);
 
-            // Default allowed: user="admin" and pass="Haldwani@Admin2026!"
             const defaultExpectedHash = await sha256('Haldwani@Admin2026!');
             const expected = storedHash || defaultExpectedHash;
 
             if (u.toLowerCase() === 'admin' && inputHash === expected) {
-                sessionStorage.setItem('hald_admin_logged_in', 'true');
+                const newSessionId = generateSessionId();
+                const now = Date.now();
+                sessionStorage.setItem(STORAGE_KEY_LOGGED_IN, 'true');
+                sessionStorage.setItem(STORAGE_KEY_SESSION_ID, newSessionId);
+                sessionStorage.setItem(STORAGE_KEY_LAST_ACTIVITY, now.toString());
+
                 errDiv.style.display = 'none';
                 document.getElementById('login-overlay').style.display = 'none';
+
+                startInactivityTracker();
                 loadData();
+                notify('Admin authenticated successfully. Session: ' + newSessionId);
             } else {
                 errDiv.textContent = 'Invalid administrator credentials. Please try again.';
                 errDiv.style.display = 'block';
@@ -831,7 +1278,13 @@
 
         // Logout
         document.getElementById('btn-logout').addEventListener('click', function() {
-            sessionStorage.removeItem('hald_admin_logged_in');
+            if (sessionIntervalId) {
+                clearInterval(sessionIntervalId);
+                sessionIntervalId = null;
+            }
+            sessionStorage.removeItem(STORAGE_KEY_LOGGED_IN);
+            sessionStorage.removeItem(STORAGE_KEY_SESSION_ID);
+            sessionStorage.removeItem(STORAGE_KEY_LAST_ACTIVITY);
             checkAuth();
         });
 
@@ -998,6 +1451,18 @@
             notify('All page assignments saved successfully!');
         });
 
+        // Save Clicks and Sync with Backend
+        function saveClicksAndSync(payload) {
+            localStorage.setItem(STORAGE_KEY_CLICKS, JSON.stringify(currentClicks));
+            window.dispatchEvent(new Event('storage'));
+
+            fetch('/api/clicks', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(payload || currentClicks)
+            }).catch(() => {});
+        }
+
         // Save config
         function saveConfigToStorage() {
             localStorage.setItem(STORAGE_KEY_CONFIG, JSON.stringify(currentConfig));
@@ -1124,17 +1589,195 @@
             notify('Generated simulated user click event!');
         });
 
-        // Clear Clicks
-        document.getElementById('btn-clear-clicks').addEventListener('click', function() {
-            if (confirm('Are you sure you want to clear all tracked click logs? This cannot be undone.')) {
-                currentClicks = [];
-                localStorage.setItem(STORAGE_KEY_CLICKS, JSON.stringify([]));
+                // --- CLEAR HISTORY MODAL & SELECTIVE PURGE LOGIC ---
+        function openClearModal() {
+            const modal = document.getElementById('modal-clear-history');
+            if (!modal) return;
+
+            // Fill single page selector
+            const selSingle = document.getElementById('select-single-page-clear');
+            selSingle.innerHTML = '';
+            ALL_PAGES.forEach(p => {
+                const count = currentClicks.filter(c => c.page === p.route).length;
+                const opt = document.createElement('option');
+                opt.value = p.route;
+                opt.textContent = `${p.title} (${p.route}) — ${count} click${count === 1 ? '' : 's'}`;
+                selSingle.appendChild(opt);
+            });
+            updateSinglePreview();
+
+            // Fill multi-select container
+            const multiContainer = document.getElementById('multi-pages-list-container');
+            multiContainer.innerHTML = '';
+            const pagesWithClicks = ALL_PAGES.filter(p => currentClicks.some(c => c.page === p.route));
+            if (pagesWithClicks.length === 0) {
+                multiContainer.innerHTML = '<div style="padding: 1.25rem; color: #64748b; font-size: 0.85rem; text-align: center;">No click logs recorded on any page yet.</div>';
+            } else {
+                pagesWithClicks.forEach(p => {
+                    const count = currentClicks.filter(c => c.page === p.route).length;
+                    const div = document.createElement('div');
+                    div.className = 'multi-page-item';
+                    div.innerHTML = `
+                        <label>
+                            <input type="checkbox" class="multi-clear-check" value="${p.route}">
+                            <span><strong>${p.title}</strong> <span style="font-size: 0.78rem; color: #64748b;">(${p.route})</span></span>
+                        </label>
+                        <span class="page-click-count-badge">${count} clicks</span>
+                    `;
+                    multiContainer.appendChild(div);
+                });
+            }
+
+            // Reset tab to single
+            switchClearTab('clear-single');
+            modal.style.display = 'flex';
+        }
+
+        function closeClearModal() {
+            const modal = document.getElementById('modal-clear-history');
+            if (modal) modal.style.display = 'none';
+        }
+
+        function updateSinglePreview() {
+            const selSingle = document.getElementById('select-single-page-clear');
+            const preview = document.getElementById('single-page-stats-preview');
+            if (!selSingle || !preview) return;
+            const target = selSingle.value;
+            const count = currentClicks.filter(c => c.page === target).length;
+            preview.textContent = `Current clicks recorded for this page: ${count}`;
+        }
+
+        function switchClearTab(tabId) {
+            document.querySelectorAll('.clear-tab-btn').forEach(btn => {
+                btn.classList.toggle('active', btn.getAttribute('data-clear-tab') === tabId);
+            });
+            document.getElementById('pane-clear-single').style.display = tabId === 'clear-single' ? 'block' : 'none';
+            document.getElementById('pane-clear-multi').style.display = tabId === 'clear-multi' ? 'block' : 'none';
+            document.getElementById('pane-clear-all').style.display = tabId === 'clear-all' ? 'block' : 'none';
+        }
+
+        // Open/Close Modal
+        document.getElementById('btn-open-clear-modal').addEventListener('click', openClearModal);
+        document.getElementById('btn-close-clear-modal').addEventListener('click', closeClearModal);
+        document.getElementById('modal-clear-history').addEventListener('click', function(e) {
+            if (e.target === this) closeClearModal();
+        });
+
+        // Tab Switching in Modal
+        document.querySelectorAll('.clear-tab-btn').forEach(btn => {
+            btn.addEventListener('click', function() {
+                switchClearTab(this.getAttribute('data-clear-tab'));
+            });
+        });
+
+        // Single select change
+        document.getElementById('select-single-page-clear').addEventListener('change', updateSinglePreview);
+
+        // Confirm Clear Single Page
+        document.getElementById('btn-confirm-clear-single').addEventListener('click', function() {
+            const targetPage = document.getElementById('select-single-page-clear').value;
+            const count = currentClicks.filter(c => c.page === targetPage).length;
+            if (count === 0) {
+                notify('No clicks to clear for this page.', true);
+                return;
+            }
+            if (confirm(`Are you sure you want to permanently clear all ${count} click logs for "${targetPage}"?`)) {
+                currentClicks = currentClicks.filter(c => c.page !== targetPage);
+                saveClicksAndSync({ action: 'clear_page', page: targetPage });
+                closeClearModal();
                 renderAnalytics();
-                notify('Click analytics log cleared.');
+                notify(`Cleared ${count} click logs for ${targetPage}.`);
             }
         });
 
-        // Export CSV
+        // Quick Clear from Filter Strip
+        document.getElementById('btn-clear-current-page').addEventListener('click', function() {
+            const filterPage = document.getElementById('filter-page-select').value;
+            if (filterPage === 'ALL') return;
+            const count = currentClicks.filter(c => c.page === filterPage).length;
+            if (count === 0) {
+                notify('No clicks to clear for this page.', true);
+                return;
+            }
+            if (confirm(`Are you sure you want to clear all ${count} click logs for "${filterPage}"?`)) {
+                currentClicks = currentClicks.filter(c => c.page !== filterPage);
+                saveClicksAndSync({ action: 'clear_page', page: filterPage });
+                renderAnalytics();
+                notify(`Cleared all ${count} click logs for ${filterPage}.`);
+            }
+        });
+
+        // Multi-select select all / deselect all
+        document.getElementById('link-select-all-multi').addEventListener('click', function(e) {
+            e.preventDefault();
+            document.querySelectorAll('.multi-clear-check').forEach(cb => cb.checked = true);
+        });
+        document.getElementById('link-deselect-all-multi').addEventListener('click', function(e) {
+            e.preventDefault();
+            document.querySelectorAll('.multi-clear-check').forEach(cb => cb.checked = false);
+        });
+
+        // Confirm Clear Selected Pages
+        document.getElementById('btn-confirm-clear-multi').addEventListener('click', function() {
+            const checkedBoxes = Array.from(document.querySelectorAll('.multi-clear-check:checked'));
+            if (checkedBoxes.length === 0) {
+                notify('Please select at least one page to clear.', true);
+                return;
+            }
+            const selectedPages = checkedBoxes.map(cb => cb.value);
+            const totalCount = currentClicks.filter(c => selectedPages.includes(c.page)).length;
+            if (confirm(`Are you sure you want to clear all ${totalCount} click logs from the ${selectedPages.length} selected pages?`)) {
+                const pageSet = new Set(selectedPages);
+                currentClicks = currentClicks.filter(c => !pageSet.has(c.page));
+                saveClicksAndSync({ action: 'clear_pages', pages: selectedPages });
+                closeClearModal();
+                renderAnalytics();
+                notify(`Cleared ${totalCount} click logs across ${selectedPages.length} pages.`);
+            }
+        });
+
+        // Confirm Clear All History
+        document.getElementById('btn-confirm-clear-all').addEventListener('click', function() {
+            if (currentClicks.length === 0) {
+                notify('No click history to clear.', true);
+                return;
+            }
+            if (confirm('Are you ABSOLUTELY SURE you want to permanently clear ALL website click logs? This cannot be undone.')) {
+                currentClicks = [];
+                saveClicksAndSync({ action: 'clear_all' });
+                closeClearModal();
+                renderAnalytics();
+                notify('All click analytics history permanently cleared.');
+            }
+        });
+
+        // Table Select All Visible Checkbox
+        document.getElementById('select-all-clicks').addEventListener('change', function() {
+            const isChecked = this.checked;
+            document.querySelectorAll('#clicks-tbody .click-row-checkbox').forEach(cb => {
+                cb.checked = isChecked;
+                const id = cb.getAttribute('data-id');
+                if (isChecked) selectedClickIds.add(id);
+                else selectedClickIds.delete(id);
+            });
+            updateBatchToolbar();
+        });
+
+        // Delete Selected Rows Button
+        document.getElementById('btn-delete-selected-rows').addEventListener('click', function() {
+            const count = selectedClickIds.size;
+            if (count === 0) return;
+            if (confirm(`Delete the ${count} selected click records?`)) {
+                const idsArray = Array.from(selectedClickIds);
+                currentClicks = currentClicks.filter(c => !selectedClickIds.has(c.id));
+                selectedClickIds.clear();
+                saveClicksAndSync({ action: 'delete_ids', ids: idsArray });
+                renderAnalytics();
+                notify(`Deleted ${count} selected click records.`);
+            }
+        });
+
+// Export CSV
         document.getElementById('btn-export-csv').addEventListener('click', function() {
             if (currentClicks.length === 0) {
                 notify('No clicks to export!', true);
