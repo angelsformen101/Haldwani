@@ -4,13 +4,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>CityHaldwani | Management Desk</title>
-    <link rel="icon" type="image/png" href="../city-logo.png">
+    <link rel="icon" type="image/png" href="/city-logo.png">
     <script>
         (function() {
             // Strictly enforce secret route /admin! and hide actual file name
             if (window.location.protocol.startsWith('http')) {
                 var path = decodeURIComponent(window.location.pathname);
-                if (!path.endsWith('/admin!') && !path.endsWith('/admin!/')) {
+                if (!path.includes('admin!')) {
                     window.location.replace('/');
                     return;
                 }
@@ -21,7 +21,6 @@
         })();
     </script>
     <script src="/js/contacts-config.js"></script>
-    <script src="contacts-config.js"></script>
     <style>
         :root {
             --bg-dark: #0b1120;
@@ -501,7 +500,7 @@
     <div id="login-overlay">
         <div class="login-card">
             <div class="login-logo">
-                <img src="../city-logo.png" alt="CityHaldwani">
+                <img src="/city-logo.png" alt="CityHaldwani">
                 City<span>Haldwani</span>
             </div>
             <p class="login-sub">Administrative Control &amp; Click Duration Desk</p>
@@ -530,7 +529,7 @@
     <!-- MAIN DASHBOARD -->
     <header class="admin-nav">
         <div class="nav-brand">
-            <img src="../city-logo.png" alt="CityHaldwani" width="34" height="34" style="border-radius:6px; border:1px solid #334155;">
+            <img src="/city-logo.png" alt="CityHaldwani" width="34" height="34" style="border-radius:6px; border:1px solid #334155;">
             City<span>Haldwani</span> <span class="badge-admin">Admin Portal</span>
         </div>
         <div class="nav-actions">

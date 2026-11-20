@@ -120,20 +120,22 @@ const server = http.createServer((req, res) => {
 
     // --- ADMIN SECRET ACCESS: ONLY /admin! OR /admin!/ SERVES THE ADMIN PANEL ---
     if (decodedPath === '/admin!' || decodedPath === '/admin!/') {
+        const adminHtml = path.join(ROOT, 'admin!.html');
         const adminIndex = path.join(ROOT, 'admin', 'index.html');
-        if (fs.existsSync(adminIndex)) {
+        const target = fs.existsSync(adminHtml) ? adminHtml : adminIndex;
+        if (fs.existsSync(target)) {
             res.writeHead(200, {
                 'Content-Type': 'text/html; charset=utf-8',
                 'Cache-Control': 'no-store, no-cache, must-revalidate, private',
                 'X-Frame-Options': 'DENY',
                 'X-Content-Type-Options': 'nosniff'
             });
-            return fs.createReadStream(adminIndex).pipe(res);
+            return fs.createReadStream(target).pipe(res);
         }
     }
 
-    // --- STRICT ACCESS CONTROL: BLOCK ANY DIRECT ACCESS TO /admin OR /admin/* ---
-    if (decodedPath === '/admin' || decodedPath === '/admin/' || decodedPath.startsWith('/admin/')) {
+    // --- STRICT ACCESS CONTROL: BLOCK ANY DIRECT ACCESS TO /admin OR /admin/* OR /admin!.html ---
+    if (decodedPath === '/admin' || decodedPath === '/admin/' || decodedPath.startsWith('/admin/') || decodedPath === '/admin!.html') {
         res.writeHead(404, { 'Content-Type': 'text/html; charset=utf-8' });
         const notFound = path.join(ROOT, '404.html');
         if (fs.existsSync(notFound)) {

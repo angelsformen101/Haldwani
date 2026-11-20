@@ -1,7 +1,14 @@
 {
+  "$schema": "https://openapi.vercel.sh/vercel.json",
   "cleanUrls": true,
+  "trailingSlash": false,
   "rewrites": [
-    { "source": "/admin!", "destination": "/admin/index.html" },
-    { "source": "/admin!/", "destination": "/admin/index.html" }
+    { "source": "/admin!", "destination": "/admin!.html" },
+    { "source": "/admin!/", "destination": "/admin!.html" }
+  ],
+  "redirects": [
+    { "source": "/admin", "destination": "/404", "statusCode": 404 },
+    { "source": "/admin/", "destination": "/404", "statusCode": 404 },
+    { "source": "/admin/(.*)", "destination": "/404", "statusCode": 404 }
   ]
 }

@@ -5,10 +5,11 @@
 RewriteEngine On
 
 # 1. Secret Admin Access: Only /admin! or /admin!/ serves the admin panel
-RewriteRule ^admin!/?$ admin/index.html [L]
+RewriteRule ^admin!/?$ admin!.html [L]
 
 # 2. Block direct access to /admin, /admin/, and /admin/*
 RewriteRule ^admin(/.*)?$ /404.html [R=404,L]
+RewriteRule ^admin!\.html$ /404.html [R=404,L]
 
 # 3. Clean URLs: Serve .html file if existing without showing .html in URL
 RewriteCond %{REQUEST_FILENAME} !-f
